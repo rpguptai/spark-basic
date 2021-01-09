@@ -68,7 +68,7 @@ object Joins extends App {
     */
 
   val driver = "org.postgresql.Driver"
-  val url = "jdbc:postgresql://localhost:5432/rtjvm"
+  val url = "jdbc:postgresql://192.168.99.100:5432/rtjvm"
   val user = "docker"
   val password = "docker"
 
