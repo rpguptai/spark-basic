@@ -1,4 +1,4 @@
-name := "spark-basic"
+name := "spark-batch"
 
 version := "0.1"
 
