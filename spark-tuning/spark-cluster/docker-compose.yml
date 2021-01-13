@@ -1,0 +1,61 @@
+version: "3.7"
+services:
+  spark-master:
+    image: spark-master:latest
+    ports:
+      - "4040:4040"
+      - "8080:8080"
+      - "7077:7077"
+    volumes:
+      - ./apps:/opt/spark-apps
+      - ./data:/opt/spark-data
+    environment:
+      - "SPARK_LOCAL_IP=spark-master"
+  spark-worker-1:
+    image: spark-worker:latest
+    container_name: spark-worker-1
+    ports:
+      - "8081:8081"
+    depends_on:
+      - spark-master
+    environment:
+      - SPARK_MASTER=spark://spark-master:7077
+      - SPARK_WORKER_CORES=1
+      - SPARK_WORKER_MEMORY=2G
+      - SPARK_DRIVER_MEMORY=256m
+      - SPARK_EXECUTOR_MEMORY=1G
+    volumes:
+      - ./apps:/opt/spark-apps
+      - ./data:/opt/spark-data
+  spark-worker-2:
+    image: spark-worker:latest
+    container_name: spark-worker-2
+    ports:
+      - "8082:8081"
+    depends_on:
+      - spark-master
+    environment:
+      - SPARK_MASTER=spark://spark-master:7077
+      - SPARK_WORKER_CORES=1
+      - SPARK_WORKER_MEMORY=2G
+      - SPARK_DRIVER_MEMORY=256m
+      - SPARK_EXECUTOR_MEMORY=1G
+    volumes:
+      - ./apps:/opt/spark-apps
+      - ./data:/opt/spark-data
+  spark-worker-3:
+    image: spark-worker:latest
+    container_name: spark-worker-3
+    ports:
+      - "8083:8081"
+    depends_on:
+      - spark-master
+    environment:
+      - SPARK_MASTER=spark://spark-master:7077
+      - SPARK_WORKER_CORES=1
+      - SPARK_WORKER_MEMORY=2G
+      - SPARK_DRIVER_MEMORY=256m
+      - SPARK_EXECUTOR_MEMORY=1G
+    volumes:
+      - ./apps:/opt/spark-apps
+      - ./data:/opt/spark-data
