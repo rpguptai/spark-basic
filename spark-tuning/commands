@@ -1,0 +1,19 @@
+/spark/bin/spark-submit --class foundations.TestDeployApp --master spark://spark-master:7077 --deploy-mode client --verbose --supervise spark-tuning.jar /tmp/data/movies/movies.json /tmp/data/movies/goodMovies/
+
+
+docker cp data spark-cluster_spark-master_1:/tmp
+
+docker cp data spark-worker-1:/tmp
+
+docker cp data spark-worker-2:/tmp
+
+docker cp data spark-worker-3:/tmp
+
+
+
+docker exec -it spark-worker-1 bash
+
+
+docker exec -it spark-worker-2 bash
+
+docker exec -it spark-worker-3 bash
