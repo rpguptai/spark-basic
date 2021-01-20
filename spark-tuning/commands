@@ -1,19 +1,41 @@
-/spark/bin/spark-submit --class foundations.TestDeployApp --master spark://spark-master:7077 --deploy-mode client --verbose --supervise spark-tuning.jar /tmp/data/movies/movies.json /tmp/data/movies/goodMovies/
-
+/spark/bin/spark-submit --class com.versh.tuning.basics.TestDeployApp --master spark://spark-master:7077 --deploy-mode client --verbose --supervise /opt/spark-apps/spark-tuning.jar  /opt/spark-data/movies.json /opt/spark-data/goodMovies
 
 docker cp data spark-cluster_spark-master_1:/tmp
 
-docker cp data spark-worker-1:/tmp
+docker-compose up --scale spark-worker=5
 
-docker cp data spark-worker-2:/tmp
+SEQ:
+    park-job-anatomy
+    query-plans
+    query-plans-exercises
+    spark-ui
+    spark-apis
+    deploy-config
+    join-mechanics
+    broadcast-joins
+    column-pruning
+    prepartitioning
+    bucketing
+    skewed-joins
+    rdd-joins
+    cogroup
+    rdd-broadcast
+    rdd-skews
+    rdd-transformations
+    by-key-ops
+    reusing-objects
+    i2i-transformations
+    i2i-transformations-exercises
 
-docker cp data spark-worker-3:/tmp
+    catalyst
+    tungsten
+    caching
+    checkpointing
+    repartition-coalesce
+    partitioning-problems
+    partitioners
+    data-skews
+    serialization-problems
+    serialization-problems-2
+    kryo
 
-
-
-docker exec -it spark-worker-1 bash
-
-
-docker exec -it spark-worker-2 bash
-
-docker exec -it spark-worker-3 bash
